@@ -1,0 +1,21 @@
+Create TABLE Golf_Store (ID INTEGER PRIMARY KEY, Item TEXT, Aisle INTEGER, Inventory INTEGER, Price INTEGER, Color TEXT);
+
+INSERT into Golf_Store VALUES (1, "Driver", 3, 15, 500, "black");
+INSERT into Golf_Store VALUES (2, "3 Wood", 3, 12, 299, 'black');
+INSERT into Golf_Store VALUES (3, "5 Wood", 3, 16, 299, 'black');
+INSERT into Golf_Store VALUES (4, "Hybrid", 4, 12, 229, 'black');
+INSERT into Golf_Store VALUES (5, "Iron Set", 4, 6, 1150, 'silver');
+INSERT into Golf_Store VALUES (6, "Gap Wedge", 4, 11, 149, 'silver');
+INSERT into Golf_Store VALUES (7, "Sand Wedge", 4, 21, 149, 'silver');
+INSERT into Golf_Store VALUES (8, "Lob Wedge", 4, 10, 149, 'silver');
+INSERT into Golf_Store VALUES (9, "Blade Putter", 5, 31, 229, 'silver');
+INSERT into Golf_Store VALUES (10, "Mallet Putter", 5, 21, 229, 'silver');
+INSERT into Golf_Store VALUES (11, "Golf Balls", 2, 101, 40, 'white');
+INSERT into Golf_Store VALUES (12, "Golf Tees", 2, 80, 8, 'red');
+INSERT into Golf_Store VALUES (13, "Golf Glove", 2, 49, 20, 'white');
+INSERT into Golf_Store VALUES (14, "Golf Bag", 1, 7, 180, 'red');
+INSERT into Golf_Store VALUES (15, "Golf Hat", 1, 99, 30, 'red');
+
+SELECT * FROM Golf_Store ORDER BY Price;
+
+SELECT MAX(Inventory) FROM Golf_Store
