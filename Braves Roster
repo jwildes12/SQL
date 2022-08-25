@@ -1,0 +1,58 @@
+CREATE TABLE Names (id INTEGER PRIMARY KEY, Firstname TEXT, Lastname TEXT, Number INTEGER);
+
+INSERT into Names VALUES (1,'Ronald','Acuna',13);
+INSERT into Names VALUES (2,'Michael','Harris',23);
+INSERT into Names VALUES (3,'Eddie','Rosario',8);
+INSERT into Names VALUES (4,'Austin','Riley',27);
+INSERT into Names VALUES (5,'Dansby','Swanson',7);
+INSERT into Names VALUES (6,'Ozzie','Albies',1);
+INSERT into Names VALUES (7,'Matt','Olson',28);
+INSERT into Names VALUES (8,'Travis','dArnaud',16);
+INSERT into Names VALUES (9,'William','Contreras',24);
+INSERT into Names VALUES (10,'Robbie','Grossman',15);
+INSERT into Names VALUES (11,'Guillermo','Heredia',38);
+INSERT into Names VALUES (12,'Marcell','Ozuna',20);
+INSERT into Names VALUES (13,'Max','Fried',54);
+INSERT into Names VALUES (14,'Kenley','Jansen',74);
+INSERT into Names VALUES (15,'Charlie','Morton',50);
+INSERT into Names VALUES (16,'Spencer','Strider',65);
+INSERT into Names VALUES (17,'Kyle','Wright',30);
+
+CREATE TABLE Specs (id INTEGER PRIMARY KEY, Position_id INTEGER, Bats TEXT, Throws TEXT);
+
+INSERT into Specs VALUES (1,9,'R','R');
+INSERT into Specs VALUES (2,8,'L','L');
+INSERT into Specs VALUES (3,7,'L','R');
+INSERT into Specs VALUES (4,5,'R','R');
+INSERT into Specs VALUES (5,6,'R','R');
+INSERT into Specs VALUES (6,4,'S','R');
+INSERT into Specs VALUES (7,3,'L','R');
+INSERT into Specs VALUES (8,2,'R','R');
+INSERT into Specs VALUES (9,2,'R','R');
+INSERT into Specs VALUES (10,9,'S','L');
+INSERT into Specs VALUES (11,8,'L','L');
+INSERT into Specs VALUES (12,7,'R','R');
+INSERT into Specs VALUES (13,1,'L','L');
+INSERT into Specs VALUES (14,1,'S','R');
+INSERT into Specs VALUES (15,1,'R','R');
+INSERT into Specs VALUES (16,1,'R','R');
+INSERT into Specs VALUES (17,1,'R','R');
+
+CREATE TABLE Positions (id INTEGER PRIMARY KEY, Position TEXT, Abbrev TEXT);
+
+INSERT into Positions VALUES (1,'Pitcher','P');
+INSERT into Positions VALUES (2,'Catcher','C');
+INSERT into Positions VALUES (3,'First Base','1B');
+INSERT into Positions VALUES (4,'Second Base','2B');
+INSERT into Positions VALUES (5,'Third Base','3B');
+INSERT into Positions VALUES (6,'Shortstop','SS');
+INSERT into Positions VALUES (7,'Left Field','LF');
+INSERT into Positions VALUES (8,'Center Field','CF');
+INSERT into Positions VALUES (9,'Right Field','RF');
+
+SELECT number as Number, Firstname as First, lastname as Last, positions.abbrev as Pos, specs.bats, specs.throws FROM Names
+LEFT JOIN Specs
+ON names.id = specs.id
+LEFT JOIN Positions
+ON specs.position_id = positions.id
+ORDER BY Number
