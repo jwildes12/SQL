@@ -1,0 +1,84 @@
+CREATE TABLE players (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    lastname TEXT,
+    firstname TEXT,
+    age INTEGER);
+    
+CREATE TABLE stats (id INTEGER PRIMARY KEY AUTOINCREMENT,
+    player_id INTEGER,
+    current_team TEXT,
+    home_runs INTEGER);
+
+INSERT INTO players (lastname, firstname, age) 
+    VALUES ("Pujols", "Albert", 42);
+INSERT INTO players (lastname, firstname, age) 
+    VALUES ("Cabrera", "Miguel", 39);
+INSERT INTO players (lastname, firstname, age) 
+    VALUES ("Cruz", "Nelson", 41);
+INSERT INTO players (lastname, firstname, age) 
+    VALUES ("Stanton", "Giancarlo", 32);
+INSERT INTO players (lastname, firstname, age)
+    VALUES ("Trout", "Mike", 30);
+INSERT INTO players (lastname, firstname, age) 
+    VALUES ("Votto", "Joey", 38);
+INSERT INTO players (lastname, firstname, age) 
+    VALUES ("Longoria", "Evan", 36);
+INSERT INTO players (lastname, firstname, age) 
+    VALUES ("Goldschmidt", "Paul", 34);
+INSERT INTO players (lastname, firstname, age)
+    VALUES ("Arenado", "Nolan", 31);
+INSERT INTO players (lastname, firstname, age) 
+    VALUES ("Freeman", "Freddie", 32);
+INSERT INTO players (lastname, firstname, age) 
+    VALUES ("McCutchen", "Andrew", 35);
+INSERT INTO players (lastname, firstname, age)
+    VALUES ("Harper", "Bryce", 29);
+INSERT INTO players (lastname, firstname, age) 
+    VALUES ("Machado", "Manny", 32);
+INSERT INTO players (lastname, firstname, age)
+    VALUES ("Rizzo", "Anthony", 32);
+INSERT INTO players (lastname, firstname, age)
+    VALUES ("Martinez", "J.D.", 34);
+
+INSERT INTO stats (player_id, current_team, home_runs) 
+    VALUES (1, "STL", 703);
+INSERT INTO stats (player_id, current_team, home_runs) 
+    VALUES (2, "DET", 507);
+INSERT INTO stats (player_id, current_team, home_runs) 
+    VALUES (3, "WSH", 459);
+INSERT INTO stats (player_id, current_team, home_runs) 
+    VALUES (4, "NYY", 378);
+INSERT INTO stats (player_id, current_team, home_runs) 
+    VALUES (5, "LAA", 349);
+INSERT INTO stats (player_id, current_team, home_runs) 
+    VALUES (6, "CIN", 342);
+INSERT INTO stats (player_id, current_team, home_runs) 
+    VALUES (7, "SF", 459);
+INSERT INTO stats (player_id, current_team, home_runs) 
+    VALUES (8, "STL", 315);
+INSERT INTO stats (player_id, current_team, home_runs) 
+    VALUES (9, "STL", 299);
+INSERT INTO stats (player_id, current_team, home_runs) 
+    VALUES (10, "LAD", 291);
+INSERT INTO stats (player_id, current_team, home_runs) 
+    VALUES (11, "MIL", 287);
+INSERT INTO stats (player_id, current_team, home_runs) 
+    VALUES (12, "PHI", 285);
+INSERT INTO stats (player_id, current_team, home_runs) 
+    VALUES (13, "SD", 283);
+INSERT INTO stats (player_id, current_team, home_runs) 
+    VALUES (14, "NYY", 283);
+INSERT INTO stats (player_id, current_team, home_runs) 
+    VALUES (15, "BOS", 280);
+
+/* Top 15 Active MLB Home Run Hitters as of Oct. 4, 2022 */
+
+SELECT players.lastname as "Last", players.firstname as "First", stats.current_team as "Current Team", stats.home_runs as "Total HR" from players
+    JOIN stats
+    ON players.id = stats.player_id
+    ORDER BY "Total HR" desc;
+    
+/* Total HR for Teams with Top-15 Sluggers */
+
+SELECT current_team as "MLB Team", sum(stats.home_runs) as "Total HR" from stats
+    GROUP BY current_team
+    ORDER BY "Total HR" desc;
