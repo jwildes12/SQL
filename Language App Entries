@@ -1,0 +1,33 @@
+/* What does the app's SQL look like? */
+
+CREATE TABLE entries (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER,
+    date TEXT,
+    language TEXT,
+    activity TEXT);
+    
+INSERT into entries (user_id, date, language, activity)
+    VALUES (1,"2022-10-01","Spanish","Daily Lesson");
+INSERT into entries (user_id, date, language, activity)
+    VALUES (1, "2022-10-02","Spanish","Word Challenge");
+INSERT into entries (user_id, date, language, activity)
+    VALUES (1, "2022-10-02","Spanish","Daily Lesson");
+INSERT into entries (user_id, date, language, activity)
+    VALUES (1, "2022-10-03","French","Introduction");
+INSERT into entries (user_id, date, language, activity)
+    VALUES (1, "2022-10-03","Russian","Introduction");
+INSERT into entries (user_id, date, language, activity)
+    VALUES (1, "2022-10-04","Spanish","Daily Lesson");
+INSERT into entries (user_id, date, language, activity)
+    VALUES (1, "2022-10-04","French","Daily Lesson");
+    
+SELECT * FROM entries;
+
+UPDATE entries SET activity = "Intro" WHERE activity = "Introduction";
+
+SELECT * FROM entries;
+
+DELETE FROM entries WHERE language = "Russian";
+
+SELECT * FROM entries;
