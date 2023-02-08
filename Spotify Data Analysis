@@ -1,0 +1,33 @@
+--#1: What is the average "danceability" for each artist?
+
+SELECT artist_name, AVG(danceability)
+FROM BIT_DB.Spotifydata
+GROUP BY artist_name
+ORDER BY AVG(danceability) DESC;
+
+--#2: What is the "danceability" for each track?
+
+SELECT artist_name, track_name, danceability
+FROM BIT_DB.Spotifydata
+ORDER BY danceability DESC;
+
+--#3 Who are the top 10 artists based on popularity?
+
+SELECT artist_name, popularity
+FROM BIT_DB.Spotifydata
+ORDER BY popularity DESC LIMIT 10;
+
+--#4: Which artist released the longest song?
+
+SELECT artist_name, track_name, duration_ms
+FROM BIT_DB.Spotifydata
+ORDER BY duration_ms DESC LIMIT 1;
+
+--$5: What is the average "danceability" for the 10 most popular songs?
+
+SELECT artist_name, track_name, danceability
+FROM BIT_DB.Spotifydata
+ORDER BY popularity DESC LIMIT 10;
+SELECT AVG(danceability)
+FROM BIT_DB.Spotifydata
+WHERE popularity>=0.591;
