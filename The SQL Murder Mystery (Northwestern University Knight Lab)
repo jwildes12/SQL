@@ -1,0 +1,93 @@
+SELECT * from crime_scene_report
+WHERE date = 20180115
+AND type = 'murder'
+AND city = 'SQL City';
+
+SELECT * from person
+WHERE address_street_name = 'Franklin Ave'
+AND name LIKE '%Annabel%'
+ORDER BY name ASC;
+
+SELECT * from drivers_license
+LEFT JOIN person
+ON person.license_id=drivers_license.id
+WHERE person.name = 'Annabel Miller';
+
+SELECT * from interview
+JOIN person
+ON interview.person_id=person.id
+WHERE person.name = 'Annabel Miller';
+
+SELECT * from get_fit_now_check_in
+LEFT JOIN get_fit_now_member
+ON get_fit_now_check_in.membership_id=get_fit_now_member.id
+WHERE get_fit_now_member.name = 'Annabel Miller';
+
+WITH workout_time AS (
+SELECT * FROM get_fit_now_check_in
+JOIN get_fit_now_member
+ON get_fit_now_check_in.membership_id=get_fit_now_member.id
+WHERE check_in_date = 20180109
+AND check_in_time <= 1700
+)
+SELECT * from workout_time
+WHERE check_out_time >=1600
+AND name <> "Annabel Miller";
+
+SELECT * from interview
+JOIN person
+ON interview.person_id=person.id
+WHERE person.address_street_name='Northwestern Dr'
+ORDER BY address_number DESC LIMIT 1
+
+SELECT drivers_license.id, plate_number, person.name
+FROM drivers_license 
+LEFT JOIN person
+ON person.license_id=drivers_license.id
+WHERE plate_number LIKE '%H42W%';
+
+SELECT * FROM get_fit_now_member
+LEFT JOIN person
+ON get_fit_now_member.person_id=person.id
+WHERE person.name = 'Jeremy Bowers';
+
+INSERT INTO solution VALUES (1, 'Jeremy Bowers');
+        
+        SELECT value FROM solution;
+   
+SELECT * FROM interview
+LEFT JOIN person
+ON interview.person_id=person.id
+WHERE person.name='Jeremy Bowers';
+
+WITH female_suspect AS (
+SELECT drivers_license.id as DL_id, age, height, hair_color, gender, plate_number, car_make, car_model, person.id as suspect_id, person.name
+FROM drivers_license
+LEFT JOIN person
+ON person.license_id=drivers_license.id
+WHERE gender='female'
+AND hair_color='red'
+AND (height=65 or height=67)
+AND car_make='Tesla'
+)
+SELECT suspect_id, name, facebook_event_checkin.event_name, facebook_event_checkin.date
+FROM female_suspect
+LEFT JOIN facebook_event_checkin
+ON facebook_event_checkin.person_id=female_suspect.suspect_id;
+
+WITH mastermind AS (
+	SELECT p.name as person_name, p.id as person_id, dl.id, dl.height, dl.hair_color, dl.gender, dl.car_make, dl.car_model
+	FROM drivers_license dl
+	LEFT JOIN person p
+	ON p.license_id=dl.id
+	WHERE gender='female'
+	AND hair_color='red'
+	AND car_make='Tesla'
+	AND car_model='Model S'
+ )
+ SELECT *
+ FROM mastermind m
+ LEFT JOIN facebook_event_checkin fb
+ ON fb.person_id=m.person_id
+ WHERE event_name LIKE '%SQL Symphony%'
+ AND fb.date LIKE '201712%';
