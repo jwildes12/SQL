@@ -52,8 +52,7 @@ ON get_fit_now_member.person_id=person.id
 WHERE person.name = 'Jeremy Bowers';
 
 INSERT INTO solution VALUES (1, 'Jeremy Bowers');
-        
-        SELECT value FROM solution;
+SELECT value FROM solution;
    
 SELECT * FROM interview
 LEFT JOIN person
@@ -91,3 +90,6 @@ WITH mastermind AS (
  ON fb.person_id=m.person_id
  WHERE event_name LIKE '%SQL Symphony%'
  AND fb.date LIKE '201712%';
+
+INSERT INTO solution VALUES (1, 'Miranda Priestly');
+SELECT value FROM solution;
